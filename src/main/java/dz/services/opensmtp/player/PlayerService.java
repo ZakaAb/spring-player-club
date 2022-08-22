@@ -1,5 +1,6 @@
 package dz.services.opensmtp.player;
 
+import dz.services.opensmtp.club.Club;
 import dz.services.opensmtp.club.ClubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -71,5 +72,17 @@ public class PlayerService {
 
     public List<Player> findAllByLimit(int limit, String order) {
         return playerRepository.findAllByLimit(PageRequest.of(0, limit, Sort.Direction.ASC  , order));
+    }
+
+    public Optional<Player> addPlayerToClub(Long id, Long clubId) {
+        Optional<Player> player = playerRepository.findById(id);
+        if (player.isPresent()) {
+            Optional<Club> club = clubRepository.findById(clubId);
+            if(club.isPresent()) {
+                player.get().setClub(club.get());
+                playerRepository.save(player.get());
+            }
+        }
+        return playerRepository.findById(id);
     }
 }

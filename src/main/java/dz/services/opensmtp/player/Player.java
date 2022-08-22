@@ -6,6 +6,9 @@ import dz.services.opensmtp.club.Club;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -25,8 +28,10 @@ public class Player {
     private String name;
     private int age;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    // @ManyToOne(fetch = FetchType.EAGER, optional = true)
+    @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "club_id")
+    @NotFound(action = NotFoundAction.IGNORE)
     private Club club;
 
     public Player(String name, int age) {
@@ -36,6 +41,10 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
+    }
+
+    public Player(int  age) {
+        this.age = age;
     }
 
     public Player(Long id) {

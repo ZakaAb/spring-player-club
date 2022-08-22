@@ -22,6 +22,17 @@ public class PlayerController {
         return new ResponseEntity<>(playerCreated, HttpStatus.CREATED);
     }
 
+    @PutMapping("/player/{id}/club/{clubId}")
+    public ResponseEntity<Object> updatePlayer(@PathVariable("id") Long id,@PathVariable("clubId") Long clubId) {
+        Optional<Player> playerCreated  = playerService.addPlayerToClub(id, clubId);
+        return new ResponseEntity<>(playerCreated, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/player")
+    public ResponseEntity<Object> addPlayer(@RequestBody Player player) {
+        return new ResponseEntity<>(playerService.saveOrUpdate(player), HttpStatus.CREATED);
+    }
+
     @GetMapping("/player/{id}")
     public ResponseEntity<Object> getPlayerById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(playerService.getPlayerById(id), HttpStatus.OK);
