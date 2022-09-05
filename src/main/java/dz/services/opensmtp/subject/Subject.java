@@ -1,7 +1,7 @@
-package dz.services.opensmtp.club;
+package dz.services.opensmtp.subject;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import dz.services.opensmtp.player.Player;
+
+import dz.services.opensmtp.professor.Professor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,19 +10,17 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-// @Table(name = "clubs")
-public class Club {
+public class Subject {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "club")
-    private List<Player> players;
+    @ManyToMany(mappedBy = "subjects")
+    private List<Professor> professors;
 
 }
