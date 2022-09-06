@@ -7,9 +7,9 @@ import dz.services.opensmtp.request.FamilyRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class FamilyController {
@@ -32,5 +32,10 @@ public class FamilyController {
         family = familyRepository.save(family);
 
         return new ResponseEntity<Family>(family, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/family")
+    public ResponseEntity<List<Family>> getFamilyByHouse(@RequestParam String name) {
+        return new ResponseEntity<List<Family>>(familyRepository.findByHouseName(name), HttpStatus.OK);
     }
 }

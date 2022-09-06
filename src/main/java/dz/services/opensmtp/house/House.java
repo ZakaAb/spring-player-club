@@ -2,14 +2,15 @@ package dz.services.opensmtp.house;
 
 
 import dz.services.opensmtp.family.Family;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+//@Data
+@ToString
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class House {
