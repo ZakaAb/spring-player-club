@@ -1,6 +1,7 @@
 package dz.services.opensmtp.house;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import dz.services.opensmtp.family.Family;
 import lombok.*;
 
@@ -20,6 +21,7 @@ public class House {
     private Long id;
     private String name;
 
+    @JsonBackReference
     @OneToOne(mappedBy = "house")
     private Family family;
 }

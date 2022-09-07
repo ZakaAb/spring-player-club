@@ -20,7 +20,10 @@ public class Course {
     private Long id;
     private String name;
 
-    @OneToMany(mappedBy = "course")
-    private List<Student> students;
+
+    @ManyToOne
+    private Student student;
+
+
 
 }

@@ -20,6 +20,7 @@ public class Family {
     private Long id;
     private String name;
 
+    
     @OneToOne
     private House house;
 

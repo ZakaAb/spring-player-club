@@ -36,6 +36,7 @@ public class FamilyController {
 
     @GetMapping("/family")
     public ResponseEntity<List<Family>> getFamilyByHouse(@RequestParam String name) {
-        return new ResponseEntity<List<Family>>(familyRepository.findByHouseName(name), HttpStatus.OK);
+        //return new ResponseEntity<List<Family>>(familyRepository.findByHouseName(name), HttpStatus.OK);
+        return new ResponseEntity<List<Family>>(familyRepository.getFamilyByHouse(name), HttpStatus.OK);
     }
 }
