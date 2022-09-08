@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedNativeQuery(name = "getAllRecords", query= "select * from house", resultClass = House.class)
 public class House {
 
     @Id
