@@ -2,6 +2,8 @@ package dz.services.opensmtp.subject;
 
 
 import dz.services.opensmtp.professor.Professor;
+import dz.services.opensmtp.request.StudentRequest;
+import dz.services.opensmtp.request.SubjectRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,4 +25,7 @@ public class Subject {
     @ManyToMany(mappedBy = "subjects")
     private List<Professor> professors;
 
+    public Subject(SubjectRequest sReq) {
+        this.name = sReq.getName();
+    }
 }

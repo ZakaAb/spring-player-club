@@ -45,9 +45,15 @@ public class HouseController {
         }
     */
 
+    /*
+      *  @GetMapping("/house/all")
+      * public List<House> getHousesALl() {
+      *     return hDao.getAll();
+      *  }
+    */
+
     @GetMapping("/house/all")
     public List<House> getHousesALl() {
-        return hDao.getAll();
+        return houseRepository.getAllRecords();
     }
-
 }
