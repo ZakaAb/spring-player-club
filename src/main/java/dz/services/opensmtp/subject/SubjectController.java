@@ -1,5 +1,6 @@
 package dz.services.opensmtp.subject;
 
+import dz.services.opensmtp.exception.NotFoundException;
 import dz.services.opensmtp.professor.Professor;
 import dz.services.opensmtp.professor.ProfessorRepository;
 import dz.services.opensmtp.request.SubjectRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 
@@ -54,6 +56,18 @@ public class SubjectController {
         sRes.setProfessors(pName);
 
         return new ResponseEntity<SubjectResponse>(sRes, HttpStatus.OK);
+    }
+
+    @GetMapping("/subject/{id}")
+    public ResponseEntity<Object> getSubjectWithId(@PathVariable("id") Long id) {
+        Optional<Subject> subject = subjectRepository.findById(id);
+
+        try {
+            return new ResponseEntity<Object>(subject.get(), HttpStatus.OK);
+        } catch (NoSuchElementException ex) {
+            throw new NotFoundException(String.format("No record with the id [%s] was found", id));
+        }
+
     }
 
 }

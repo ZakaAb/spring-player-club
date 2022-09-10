@@ -20,6 +20,7 @@ public class Professor {
     private Long id;
     private String name;
 
+
     @ManyToMany
     private List<Subject> subjects;
 }
